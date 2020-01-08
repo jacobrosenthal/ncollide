@@ -1,7 +1,7 @@
 //! Bounding volumes.
 
-// pub use self::circular_cone::CircularCone;
-// pub use self::spatialized_normal_cone::SpatializedNormalCone;
+pub use self::circular_cone::CircularCone;
+pub use self::spatialized_normal_cone::SpatializedNormalCone;
 #[doc(inline)]
 pub use crate::bounding_volume::aabb::{aabb, local_aabb, AABB};
 pub use crate::bounding_volume::aabb_ball::ball_aabb;
@@ -46,15 +46,15 @@ pub mod bounding_sphere;
 mod bounding_sphere_ball;
 // mod bounding_sphere_capsule;
 // mod bounding_sphere_compound;
-// #[cfg(feature = "dim3")]
-// mod bounding_sphere_cone;
+#[cfg(feature = "dim3")]
+mod bounding_sphere_cone;
 // #[cfg(feature = "dim3")]
 // mod bounding_sphere_convex;
 // #[cfg(feature = "dim2")]
 // mod bounding_sphere_convex_polygon;
 // mod bounding_sphere_cuboid;
-// #[cfg(feature = "dim3")]
-// mod bounding_sphere_cylinder;
+#[cfg(feature = "dim3")]
+mod bounding_sphere_cylinder;
 // mod bounding_sphere_heightfield;
 // mod bounding_sphere_plane;
 // mod bounding_sphere_polyline;
@@ -66,5 +66,5 @@ mod bounding_sphere_ball;
 // mod bounding_sphere_trimesh;
 mod bounding_sphere_utils;
 
-// pub(crate) mod circular_cone;
-// mod spatialized_normal_cone;
+pub(crate) mod circular_cone;
+mod spatialized_normal_cone;

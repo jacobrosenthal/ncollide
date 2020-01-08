@@ -83,7 +83,7 @@ const NOT_REGISTERED_ERROR: &'static str =
 // pub use crate::pipeline::{broad_phase, narrow_phase, world};
 
 pub mod bounding_volume;
-// pub mod interpolation;
+pub mod interpolation;
 // pub mod partitioning;
 // pub mod pipeline;
 // pub mod procedural;
