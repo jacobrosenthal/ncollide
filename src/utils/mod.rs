@@ -2,7 +2,7 @@
 
 // #[doc(inline)]
 // pub use self::as_bytes::AsBytes;
-// pub use self::ccw_face_normal::ccw_face_normal;
+pub use self::ccw_face_normal::ccw_face_normal;
 pub use self::center::center;
 // #[cfg(feature = "dim3")]
 // pub use self::cleanup::remove_unused_points;
@@ -27,7 +27,7 @@ pub use self::isometry_ops::IsometryOps;
 
 // #[doc(hidden)]
 // pub mod as_bytes;
-// mod ccw_face_normal;
+mod ccw_face_normal;
 mod center;
 // #[cfg(feature = "dim3")]
 // mod cleanup;

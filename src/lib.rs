@@ -87,7 +87,7 @@ pub mod bounding_volume;
 // pub mod partitioning;
 // pub mod pipeline;
 // pub mod procedural;
-// pub mod query;
+pub mod query;
 pub mod shape;
 // pub mod transformation;
 pub mod utils;

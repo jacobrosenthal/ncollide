@@ -1,11 +1,11 @@
 //! Definition of the segment shape.
 
 use crate::math::{Isometry, Point, Vector};
-use crate::shape::{ConvexPolygonalFeature, ConvexPolyhedron, FeatureId, SupportMap};
+use crate::shape::SupportMap;
 #[cfg(feature = "dim2")]
 use crate::utils;
 use crate::utils::IsometryOps;
-use core::f64;
+// use std::f64;
 use core::mem;
 use na::{self, RealField, Unit};
 
@@ -132,47 +132,47 @@ impl<N: RealField> Segment<N> {
         }
     }
 
-    /// Checks that the given direction in world-space is on the tangent cone of the given `feature`.
-    pub fn tangent_cone_contains_dir(
-        &self,
-        feature: FeatureId,
-        m: &Isometry<N>,
-        dir: &Unit<Vector<N>>,
-    ) -> bool {
-        let ls_dir = m.inverse_transform_unit_vector(dir);
+    // /// Checks that the given direction in world-space is on the tangent cone of the given `feature`.
+    // pub fn tangent_cone_contains_dir(
+    //     &self,
+    //     feature: FeatureId,
+    //     m: &Isometry<N>,
+    //     dir: &Unit<Vector<N>>,
+    // ) -> bool {
+    //     let ls_dir = m.inverse_transform_unit_vector(dir);
 
-        if let Some(direction) = self.direction() {
-            match feature {
-                FeatureId::Vertex(id) => {
-                    let dot = ls_dir.dot(&direction);
-                    if id == 0 {
-                        dot >= N::one() - N::default_epsilon()
-                    } else {
-                        -dot >= N::one() - N::default_epsilon()
-                    }
-                }
-                #[cfg(feature = "dim3")]
-                FeatureId::Edge(_) => {
-                    ls_dir.dot(&direction).abs() >= N::one() - N::default_epsilon()
-                }
-                FeatureId::Face(id) => {
-                    let mut dir = Vector::zeros();
-                    if id == 0 {
-                        dir[0] = direction[1];
-                        dir[1] = -direction[0];
-                    } else {
-                        dir[0] = -direction[1];
-                        dir[1] = direction[0];
-                    }
+    //     if let Some(direction) = self.direction() {
+    //         match feature {
+    //             FeatureId::Vertex(id) => {
+    //                 let dot = ls_dir.dot(&direction);
+    //                 if id == 0 {
+    //                     dot >= N::one() - N::default_epsilon()
+    //                 } else {
+    //                     -dot >= N::one() - N::default_epsilon()
+    //                 }
+    //             }
+    //             #[cfg(feature = "dim3")]
+    //             FeatureId::Edge(_) => {
+    //                 ls_dir.dot(&direction).abs() >= N::one() - N::default_epsilon()
+    //             }
+    //             FeatureId::Face(id) => {
+    //                 let mut dir = Vector::zeros();
+    //                 if id == 0 {
+    //                     dir[0] = direction[1];
+    //                     dir[1] = -direction[0];
+    //                 } else {
+    //                     dir[0] = -direction[1];
+    //                     dir[1] = direction[0];
+    //                 }
 
-                    ls_dir.dot(&dir) <= N::zero()
-                }
-                _ => true,
-            }
-        } else {
-            false
-        }
-    }
+    //                 ls_dir.dot(&dir) <= N::zero()
+    //             }
+    //             _ => true,
+    //         }
+    //     } else {
+    //         false
+    //     }
+    // }
 }
 
 impl<N: RealField> SupportMap<N> for Segment<N> {
@@ -188,185 +188,185 @@ impl<N: RealField> SupportMap<N> for Segment<N> {
     }
 }
 
-impl<N: RealField> ConvexPolyhedron<N> for Segment<N> {
-    fn vertex(&self, id: FeatureId) -> Point<N> {
-        if id.unwrap_vertex() == 0 {
-            self.a
-        } else {
-            self.b
-        }
-    }
+// impl<N: RealField> ConvexPolyhedron<N> for Segment<N> {
+//     fn vertex(&self, id: FeatureId) -> Point<N> {
+//         if id.unwrap_vertex() == 0 {
+//             self.a
+//         } else {
+//             self.b
+//         }
+//     }
 
-    #[cfg(feature = "dim3")]
-    fn edge(&self, _: FeatureId) -> (Point<N>, Point<N>, FeatureId, FeatureId) {
-        (self.a, self.b, FeatureId::Vertex(0), FeatureId::Vertex(1))
-    }
+//     #[cfg(feature = "dim3")]
+//     fn edge(&self, _: FeatureId) -> (Point<N>, Point<N>, FeatureId, FeatureId) {
+//         (self.a, self.b, FeatureId::Vertex(0), FeatureId::Vertex(1))
+//     }
 
-    #[cfg(feature = "dim3")]
-    fn face(&self, _: FeatureId, _: &mut ConvexPolygonalFeature<N>) {
-        panic!("A segment does not have any face in dimensions higher than 2.")
-    }
+//     #[cfg(feature = "dim3")]
+//     fn face(&self, _: FeatureId, _: &mut ConvexPolygonalFeature<N>) {
+//         panic!("A segment does not have any face in dimensions higher than 2.")
+//     }
 
-    #[cfg(feature = "dim2")]
-    fn face(&self, id: FeatureId, face: &mut ConvexPolygonalFeature<N>) {
-        face.clear();
+//     #[cfg(feature = "dim2")]
+//     fn face(&self, id: FeatureId, face: &mut ConvexPolygonalFeature<N>) {
+//         face.clear();
 
-        if let Some(normal) = utils::ccw_face_normal([&self.a, &self.b]) {
-            face.set_feature_id(id);
+//         if let Some(normal) = utils::ccw_face_normal([&self.a, &self.b]) {
+//             face.set_feature_id(id);
 
-            match id.unwrap_face() {
-                0 => {
-                    face.push(self.a, FeatureId::Vertex(0));
-                    face.push(self.b, FeatureId::Vertex(1));
-                    face.set_normal(normal);
-                }
-                1 => {
-                    face.push(self.b, FeatureId::Vertex(1));
-                    face.push(self.a, FeatureId::Vertex(0));
-                    face.set_normal(-normal);
-                }
-                _ => unreachable!(),
-            }
-        } else {
-            face.push(self.a, FeatureId::Vertex(0));
-            face.set_feature_id(FeatureId::Vertex(0));
-        }
-    }
+//             match id.unwrap_face() {
+//                 0 => {
+//                     face.push(self.a, FeatureId::Vertex(0));
+//                     face.push(self.b, FeatureId::Vertex(1));
+//                     face.set_normal(normal);
+//                 }
+//                 1 => {
+//                     face.push(self.b, FeatureId::Vertex(1));
+//                     face.push(self.a, FeatureId::Vertex(0));
+//                     face.set_normal(-normal);
+//                 }
+//                 _ => unreachable!(),
+//             }
+//         } else {
+//             face.push(self.a, FeatureId::Vertex(0));
+//             face.set_feature_id(FeatureId::Vertex(0));
+//         }
+//     }
 
-    fn feature_normal(&self, feature: FeatureId) -> Unit<Vector<N>> {
-        if let Some(direction) = self.direction() {
-            match feature {
-                FeatureId::Vertex(id) => {
-                    if id == 0 {
-                        direction
-                    } else {
-                        -direction
-                    }
-                }
-                #[cfg(feature = "dim3")]
-                FeatureId::Edge(_) => {
-                    let iamin = direction.iamin();
-                    let mut normal = Vector::zeros();
-                    normal[iamin] = N::one();
-                    normal -= *direction * direction[iamin];
-                    Unit::new_normalize(normal)
-                }
-                FeatureId::Face(id) => {
-                    let mut dir = Vector::zeros();
-                    if id == 0 {
-                        dir[0] = direction[1];
-                        dir[1] = -direction[0];
-                    } else {
-                        dir[0] = -direction[1];
-                        dir[1] = direction[0];
-                    }
-                    Unit::new_unchecked(dir)
-                }
-                _ => panic!("Invalid feature ID: {:?}", feature),
-            }
-        } else {
-            Vector::y_axis()
-        }
-    }
+//     fn feature_normal(&self, feature: FeatureId) -> Unit<Vector<N>> {
+//         if let Some(direction) = self.direction() {
+//             match feature {
+//                 FeatureId::Vertex(id) => {
+//                     if id == 0 {
+//                         direction
+//                     } else {
+//                         -direction
+//                     }
+//                 }
+//                 #[cfg(feature = "dim3")]
+//                 FeatureId::Edge(_) => {
+//                     let iamin = direction.iamin();
+//                     let mut normal = Vector::zeros();
+//                     normal[iamin] = N::one();
+//                     normal -= *direction * direction[iamin];
+//                     Unit::new_normalize(normal)
+//                 }
+//                 FeatureId::Face(id) => {
+//                     let mut dir = Vector::zeros();
+//                     if id == 0 {
+//                         dir[0] = direction[1];
+//                         dir[1] = -direction[0];
+//                     } else {
+//                         dir[0] = -direction[1];
+//                         dir[1] = direction[0];
+//                     }
+//                     Unit::new_unchecked(dir)
+//                 }
+//                 _ => panic!("Invalid feature ID: {:?}", feature),
+//             }
+//         } else {
+//             Vector::y_axis()
+//         }
+//     }
 
-    #[cfg(feature = "dim2")]
-    fn support_face_toward(
-        &self,
-        m: &Isometry<N>,
-        dir: &Unit<Vector<N>>,
-        face: &mut ConvexPolygonalFeature<N>,
-    ) {
-        let seg_dir = self.scaled_direction();
+//     #[cfg(feature = "dim2")]
+//     fn support_face_toward(
+//         &self,
+//         m: &Isometry<N>,
+//         dir: &Unit<Vector<N>>,
+//         face: &mut ConvexPolygonalFeature<N>,
+//     ) {
+//         let seg_dir = self.scaled_direction();
 
-        if dir.perp(&seg_dir) >= na::zero() {
-            self.face(FeatureId::Face(0), face);
-        } else {
-            self.face(FeatureId::Face(1), face);
-        }
-        face.transform_by(m)
-    }
+//         if dir.perp(&seg_dir) >= na::zero() {
+//             self.face(FeatureId::Face(0), face);
+//         } else {
+//             self.face(FeatureId::Face(1), face);
+//         }
+//         face.transform_by(m)
+//     }
 
-    #[cfg(feature = "dim3")]
-    fn support_face_toward(
-        &self,
-        m: &Isometry<N>,
-        _: &Unit<Vector<N>>,
-        face: &mut ConvexPolygonalFeature<N>,
-    ) {
-        face.clear();
-        face.push(self.a, FeatureId::Vertex(0));
-        face.push(self.b, FeatureId::Vertex(1));
-        face.push_edge_feature_id(FeatureId::Edge(0));
-        face.set_feature_id(FeatureId::Edge(0));
-        face.transform_by(m)
-    }
+//     #[cfg(feature = "dim3")]
+//     fn support_face_toward(
+//         &self,
+//         m: &Isometry<N>,
+//         _: &Unit<Vector<N>>,
+//         face: &mut ConvexPolygonalFeature<N>,
+//     ) {
+//         face.clear();
+//         face.push(self.a, FeatureId::Vertex(0));
+//         face.push(self.b, FeatureId::Vertex(1));
+//         face.push_edge_feature_id(FeatureId::Edge(0));
+//         face.set_feature_id(FeatureId::Edge(0));
+//         face.transform_by(m)
+//     }
 
-    fn support_feature_toward(
-        &self,
-        transform: &Isometry<N>,
-        dir: &Unit<Vector<N>>,
-        eps: N,
-        face: &mut ConvexPolygonalFeature<N>,
-    ) {
-        face.clear();
-        let seg = self.transformed(transform);
-        let ceps = eps.sin();
+//     fn support_feature_toward(
+//         &self,
+//         transform: &Isometry<N>,
+//         dir: &Unit<Vector<N>>,
+//         eps: N,
+//         face: &mut ConvexPolygonalFeature<N>,
+//     ) {
+//         face.clear();
+//         let seg = self.transformed(transform);
+//         let ceps = eps.sin();
 
-        if let Some(seg_dir) = seg.direction() {
-            let cang = dir.dot(&seg_dir);
+//         if let Some(seg_dir) = seg.direction() {
+//             let cang = dir.dot(&seg_dir);
 
-            if cang > ceps {
-                face.set_feature_id(FeatureId::Vertex(1));
-                face.push(seg.b, FeatureId::Vertex(1));
-            } else if cang < -ceps {
-                face.set_feature_id(FeatureId::Vertex(0));
-                face.push(seg.a, FeatureId::Vertex(0));
-            } else {
-                #[cfg(feature = "dim3")]
-                {
-                    face.push(seg.a, FeatureId::Vertex(0));
-                    face.push(seg.b, FeatureId::Vertex(1));
-                    face.push_edge_feature_id(FeatureId::Edge(0));
-                    face.set_feature_id(FeatureId::Edge(0));
-                }
-                #[cfg(feature = "dim2")]
-                {
-                    if dir.perp(&seg_dir) >= na::zero() {
-                        seg.face(FeatureId::Face(0), face);
-                    } else {
-                        seg.face(FeatureId::Face(1), face);
-                    }
-                }
-            }
-        }
-    }
+//             if cang > ceps {
+//                 face.set_feature_id(FeatureId::Vertex(1));
+//                 face.push(seg.b, FeatureId::Vertex(1));
+//             } else if cang < -ceps {
+//                 face.set_feature_id(FeatureId::Vertex(0));
+//                 face.push(seg.a, FeatureId::Vertex(0));
+//             } else {
+//                 #[cfg(feature = "dim3")]
+//                 {
+//                     face.push(seg.a, FeatureId::Vertex(0));
+//                     face.push(seg.b, FeatureId::Vertex(1));
+//                     face.push_edge_feature_id(FeatureId::Edge(0));
+//                     face.set_feature_id(FeatureId::Edge(0));
+//                 }
+//                 #[cfg(feature = "dim2")]
+//                 {
+//                     if dir.perp(&seg_dir) >= na::zero() {
+//                         seg.face(FeatureId::Face(0), face);
+//                     } else {
+//                         seg.face(FeatureId::Face(1), face);
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-    fn support_feature_id_toward(&self, local_dir: &Unit<Vector<N>>) -> FeatureId {
-        if let Some(seg_dir) = self.direction() {
-            let eps: N = na::convert(f64::consts::PI / 180.0);
-            let seps = eps.sin();
-            let dot = seg_dir.dot(local_dir.as_ref());
+//     fn support_feature_id_toward(&self, local_dir: &Unit<Vector<N>>) -> FeatureId {
+//         if let Some(seg_dir) = self.direction() {
+//             let eps: N = na::convert(f64::consts::PI / 180.0);
+//             let seps = eps.sin();
+//             let dot = seg_dir.dot(local_dir.as_ref());
 
-            if dot <= seps {
-                #[cfg(feature = "dim2")]
-                {
-                    if local_dir.perp(seg_dir.as_ref()) >= na::zero() {
-                        FeatureId::Face(0)
-                    } else {
-                        FeatureId::Face(1)
-                    }
-                }
-                #[cfg(feature = "dim3")]
-                {
-                    FeatureId::Edge(0)
-                }
-            } else if dot >= na::zero() {
-                FeatureId::Vertex(1)
-            } else {
-                FeatureId::Vertex(0)
-            }
-        } else {
-            FeatureId::Vertex(0)
-        }
-    }
-}
+//             if dot <= seps {
+//                 #[cfg(feature = "dim2")]
+//                 {
+//                     if local_dir.perp(seg_dir.as_ref()) >= na::zero() {
+//                         FeatureId::Face(0)
+//                     } else {
+//                         FeatureId::Face(1)
+//                     }
+//                 }
+//                 #[cfg(feature = "dim3")]
+//                 {
+//                     FeatureId::Edge(0)
+//                 }
+//             } else if dot >= na::zero() {
+//                 FeatureId::Vertex(1)
+//             } else {
+//                 FeatureId::Vertex(0)
+//             }
+//         } else {
+//             FeatureId::Vertex(0)
+//         }
+//     }
+// }

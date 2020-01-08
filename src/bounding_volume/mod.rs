@@ -33,7 +33,7 @@ mod aabb_ball;
 // mod aabb_heightfield;
 // mod aabb_plane;
 // mod aabb_polyline;
-// mod aabb_shape;
+mod aabb_shape;
 // mod aabb_support_map;
 // #[cfg(feature = "dim3")]
 // mod aabb_triangle;

@@ -94,11 +94,9 @@ struct CapsuleContactPreprocessor<N: RealField> {
 }
 
 impl<N: RealField> CapsuleContactPreprocessor<N> {
-    //    pub fn new(radius: N) -> Self {
-    //        CapsuleContactPreprocessor {
-    //            radius
-    //        }
-    //    }
+    pub fn new(radius: N) -> Self {
+        CapsuleContactPreprocessor { radius }
+    }
 }
 
 impl<N: RealField> ContactPreprocessor<N> for CapsuleContactPreprocessor<N> {
