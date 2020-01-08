@@ -1,5 +1,5 @@
 use crate::num::Bounded;
-use std::mem;
+use core::mem;
 
 #[cfg(feature = "dim3")]
 use na::Point2;

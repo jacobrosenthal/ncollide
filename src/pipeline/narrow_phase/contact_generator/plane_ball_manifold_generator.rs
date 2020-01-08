@@ -5,8 +5,8 @@ use crate::query::{
     NeighborhoodGeometry,
 };
 use crate::shape::{Ball, FeatureId, Plane, Shape};
+use core::marker::PhantomData;
 use na::{self, RealField};
-use std::marker::PhantomData;
 
 /// Collision detector between g1 plane and g1 shape implementing the `SupportMap` trait.
 #[derive(Clone)]

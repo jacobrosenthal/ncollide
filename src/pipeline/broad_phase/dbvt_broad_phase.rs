@@ -9,11 +9,11 @@ use crate::query::visitors::{
 };
 use crate::query::{PointQuery, Ray, RayCast};
 use crate::utils::{DeterministicState, SortedPair};
+use core::any::Any;
+use core::collections::hash_map::Entry;
+use core::collections::{HashMap, VecDeque};
 use na::RealField;
 use slab::Slab;
-use std::any::Any;
-use std::collections::hash_map::Entry;
-use std::collections::{HashMap, VecDeque};
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 enum ProxyStatus {

@@ -7,8 +7,8 @@ use crate::math::Isometry;
 use crate::partitioning::{BVHImpl, BVT};
 use crate::query::{Contact, ContactKinematic, ContactPrediction, ContactPreprocessor};
 use crate::shape::{CompositeShape, FeatureId, Shape, ShapeHandle};
+use core::mem;
 use na::{self, RealField};
-use std::mem;
 
 /// A compound shape with an aabb bounding volume.
 ///

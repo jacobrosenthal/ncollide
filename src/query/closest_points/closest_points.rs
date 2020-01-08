@@ -1,6 +1,6 @@
 use crate::math::Point;
+use core::mem;
 use na::RealField;
-use std::mem;
 
 /// Closest points information.
 #[derive(Debug, PartialEq, Clone, Copy)]

@@ -32,7 +32,7 @@ fn collide(v_y: f32) -> Option<f32> {
         &pos2,
         &vel2,
         &cuboid,
-        std::f32::MAX,
+        core::f32::MAX,
         0.0,
     )
     .map(|toi| toi.toi)

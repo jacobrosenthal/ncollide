@@ -1,8 +1,8 @@
 use crate::math::Isometry;
 use crate::query::Proximity;
 use crate::shape::Shape;
+use core::any::Any;
 use na::RealField;
-use std::any::Any;
 
 /// Trait implemented by algorithms that determine if two objects are in close proximity.
 pub trait ProximityDetector<N: RealField>: Any + Send + Sync {

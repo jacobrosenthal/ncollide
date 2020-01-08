@@ -8,10 +8,10 @@ use crate::query::{
     NeighborhoodGeometry,
 };
 use crate::shape::{CompositeShape, DeformableShape, DeformationsType, FeatureId, Segment, Shape};
+use core::iter;
+use core::ops::Range;
+use core::slice;
 use na::{self, Id, Point2, RealField, Unit};
-use std::iter;
-use std::ops::Range;
-use std::slice;
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Clone)]

@@ -1,9 +1,9 @@
 use alga::general::RealField;
 
 use crate::pipeline::object::{CollisionObject, CollisionObjectRef, CollisionObjectSlabHandle};
+use core::hash::Hash;
+use core::ops::{Index, IndexMut};
 use slab::{Iter, IterMut, Slab};
-use std::hash::Hash;
-use std::ops::{Index, IndexMut};
 
 /// Trait implemented by a handle indentifying a collision object.
 pub trait CollisionObjectHandle: Copy + Hash + PartialEq + Eq + 'static + Send + Sync {}
@@ -104,7 +104,7 @@ impl<N: RealField, T> CollisionObjectSlab<N, T> {
         assert_ne!(handle1, handle2, "The two handles must not be the same.");
         let a = self.objects.get_mut(handle1.0).map(|o| o as *mut _);
         (
-            a.map(|a| unsafe { std::mem::transmute(a) }),
+            a.map(|a| unsafe { core::mem::transmute(a) }),
             self.objects.get_mut(handle2.0),
         )
     }

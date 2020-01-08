@@ -1,9 +1,9 @@
 #[cfg(feature = "dim3")]
 use super::TriMesh;
 use crate::math::Point;
+use core::iter;
+use core::ptr;
 use na::{self, RealField};
-use std::iter;
-use std::ptr;
 
 // De-Casteljau algorithm.
 // Evaluates the bezier curve with control points `control_points`.

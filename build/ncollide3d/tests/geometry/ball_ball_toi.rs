@@ -17,7 +17,7 @@ fn test_ball_ball_toi() {
         &m2,
         &na::zero(),
         &b,
-        std::f64::MAX,
+        core::f64::MAX,
         0.0,
     );
 

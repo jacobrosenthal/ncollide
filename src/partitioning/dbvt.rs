@@ -1,9 +1,9 @@
 use crate::bounding_volume::BoundingVolume;
 use crate::math::Point;
 use crate::partitioning::BVH;
+use core::ops::Index;
 use na::{self, RealField};
 use slab::Slab;
-use std::ops::Index;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 /// The unique identifier of a DBVT leaf.

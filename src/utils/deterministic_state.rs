@@ -1,5 +1,5 @@
-use std::collections::hash_map::DefaultHasher;
-use std::hash::BuildHasher;
+use core::collections::hash_map::DefaultHasher;
+use core::hash::BuildHasher;
 
 /// A hasher builder that creates `DefaultHasher` with default keys.
 pub struct DeterministicState;

@@ -1,6 +1,6 @@
-use std::cmp::PartialOrd;
-use std::mem;
-use std::ops::Deref;
+use core::cmp::PartialOrd;
+use core::mem;
+use core::ops::Deref;
 
 /// A pair of elements sorted in increasing order.
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

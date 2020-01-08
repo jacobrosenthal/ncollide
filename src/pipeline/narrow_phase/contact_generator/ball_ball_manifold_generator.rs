@@ -5,8 +5,8 @@ use crate::query::{
     NeighborhoodGeometry,
 };
 use crate::shape::{Ball, FeatureId, Shape};
+use core::marker::PhantomData;
 use na::RealField;
-use std::marker::PhantomData;
 
 /// Collision detector between two balls.
 #[derive(Clone)]

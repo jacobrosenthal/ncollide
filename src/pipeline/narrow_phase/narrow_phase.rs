@@ -49,7 +49,7 @@ impl<N: RealField, Handle: CollisionObjectHandle> NarrowPhase<N, Handle> {
         }
 
         self.id_allocator
-            .retain(|_, is_valid| std::mem::replace(is_valid, false))
+            .retain(|_, is_valid| core::mem::replace(is_valid, false))
     }
 
     /// Update the specified contact manifold between two collision objects.

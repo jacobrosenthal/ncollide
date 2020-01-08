@@ -5,11 +5,11 @@ use crate::shape::Segment;
 use crate::shape::SupportMap;
 #[cfg(feature = "dim3")]
 use crate::shape::{ConvexPolygonalFeature, ConvexPolyhedron, FeatureId};
+#[cfg(feature = "dim3")]
+use core::f64;
+use core::mem;
 use na::RealField;
 use na::{self, Unit};
-#[cfg(feature = "dim3")]
-use std::f64;
-use std::mem;
 
 /// A triangle shape.
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]

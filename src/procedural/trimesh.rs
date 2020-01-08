@@ -2,8 +2,8 @@ use super::utils;
 use crate::math::{Isometry, Point, Vector};
 use crate::utils::DeterministicState;
 use alga::linear::Translation;
+use core::collections::HashMap;
 use na::{self, Point2, Point3, RealField};
-use std::collections::HashMap;
 
 /// Different representations of the index buffer.
 #[derive(Clone, Debug)]

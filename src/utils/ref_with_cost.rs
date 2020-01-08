@@ -1,6 +1,6 @@
 //! A reference packed with a cost value.
 
-use std::cmp::Ordering;
+use core::cmp::Ordering;
 
 /// A reference packed with a cost value.
 pub struct RefWithCost<'a, N, T: 'a> {

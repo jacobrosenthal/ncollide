@@ -2,8 +2,8 @@ use crate::math::{Isometry, Point, Vector};
 use crate::shape::{ConvexPolygonalFeature, ConvexPolyhedron, FeatureId, SupportMap};
 use crate::transformation;
 use crate::utils::{self, IsometryOps};
+use core::f64;
 use na::{self, RealField, Unit};
-use std::f64;
 
 /// A 2D convex polygon.
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]

@@ -7,9 +7,9 @@ use crate::query::PointQueryWithLocation;
 use crate::shape::{SupportMap, Triangle, TrianglePointLocation};
 use crate::utils;
 use alga::linear::FiniteDimInnerSpace;
+use core::cmp::Ordering;
+use core::collections::BinaryHeap;
 use na::{self, RealField, Unit};
-use std::cmp::Ordering;
-use std::collections::BinaryHeap;
 
 #[derive(Copy, Clone, PartialEq)]
 struct FaceId<N: RealField> {

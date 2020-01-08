@@ -5,9 +5,9 @@ use crate::math::{Point, DIM};
 use crate::partitioning::BVH;
 use crate::utils;
 use alga::general::RealField;
-use std::collections::VecDeque;
-use std::iter;
-use std::usize;
+use core::collections::VecDeque;
+use core::iter;
+use core::usize;
 
 /// A Bounding Volume Tree.
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]

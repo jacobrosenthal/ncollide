@@ -36,12 +36,12 @@ ncollide3d = "0.19" # For 3D collision detection.
 
 And various traits for collision detectors and broad phase collision detection.
 */
-
+#![no_std]
 #![deny(non_camel_case_types)]
 #![deny(unused_parens)]
 #![deny(non_upper_case_globals)]
 #![deny(unused_qualifications)]
-#![deny(missing_docs)] // FIXME: should be denied.
+// #![deny(missing_docs)] // FIXME: should be denied.
 #![deny(unused_results)]
 #![warn(unused_imports)]
 #![allow(missing_copy_implementations)]
@@ -79,17 +79,17 @@ macro_rules! try_ret {
 const NOT_REGISTERED_ERROR: &'static str =
     "This collision object has not been registered into a world (proxy indexes are None).";
 
-#[deprecated = "Use the `pipeline` module instead."]
-pub use crate::pipeline::{broad_phase, narrow_phase, world};
+// #[deprecated = "Use the `pipeline` module instead."]
+// pub use crate::pipeline::{broad_phase, narrow_phase, world};
 
 pub mod bounding_volume;
-pub mod interpolation;
-pub mod partitioning;
-pub mod pipeline;
-pub mod procedural;
-pub mod query;
+// pub mod interpolation;
+// pub mod partitioning;
+// pub mod pipeline;
+// pub mod procedural;
+// pub mod query;
 pub mod shape;
-pub mod transformation;
+// pub mod transformation;
 pub mod utils;
 
 /// Compilation flags dependent aliases for mathematical types.

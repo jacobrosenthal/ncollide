@@ -1,5 +1,5 @@
+use core::cmp::Ordering;
 use num::Bounded;
-use std::cmp::Ordering;
 
 use crate::procedural::{IndexBuffer, TriMesh};
 use crate::transformation::{

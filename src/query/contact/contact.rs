@@ -1,8 +1,8 @@
 use crate::math::{Point, Vector};
 use crate::query::ContactKinematic;
+use core::mem;
 use na::{self, RealField, Unit};
 use slotmap::Key;
-use std::mem;
 
 slotmap::new_key_type! {
     /// A contact identifier which is unique within a contact manifold.

@@ -2,9 +2,9 @@ use crate::partitioning::{
     BVTNodeId, BestFirstVisitStatus, BestFirstVisitor, DBVTNodeId, SimultaneousVisitor,
     VisitStatus, Visitor, BVT, DBVT,
 };
+use core::cmp::Ordering;
+use core::collections::BinaryHeap;
 use na::RealField;
-use std::cmp::Ordering;
-use std::collections::BinaryHeap;
 
 /// Trait implemented by Bounding Volume Hierarchy.
 pub trait BVH<T, BV> {

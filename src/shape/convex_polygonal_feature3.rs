@@ -1,6 +1,6 @@
 use alga::linear::FiniteDimInnerSpace;
+use core::iter;
 use na::{self, Point2, RealField, Unit};
-use std::iter;
 
 use crate::math::{Isometry, Point, Vector};
 use crate::query::ContactPreprocessor;

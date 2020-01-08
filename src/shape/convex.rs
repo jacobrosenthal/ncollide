@@ -2,10 +2,10 @@ use crate::math::{Isometry, Point, Vector};
 use crate::shape::{ConvexPolygonalFeature, ConvexPolyhedron, FeatureId, SupportMap};
 use crate::transformation;
 use crate::utils::{self, IsometryOps, SortedPair};
+use core::collections::hash_map::Entry;
+use core::collections::HashMap;
+use core::f64;
 use na::{self, Point2, Point3, RealField, Unit};
-use std::collections::hash_map::Entry;
-use std::collections::HashMap;
-use std::f64;
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(PartialEq, Debug, Copy, Clone)]

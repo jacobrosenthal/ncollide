@@ -2,8 +2,8 @@
 
 use crate::math::{Matrix, Point};
 use crate::shape::{Segment, Triangle};
+use core::mem;
 use na::RealField;
-use std::mem;
 
 /// A tetrahedron with 4 vertices.
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]

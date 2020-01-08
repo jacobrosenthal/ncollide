@@ -2,9 +2,9 @@ use crate::math::Point;
 use crate::query::ContactPreprocessor;
 use crate::query::{Contact, ContactKinematic, TrackedContact};
 use crate::shape::FeatureId;
+use core::collections::{hash_map::Entry, HashMap};
 use na::{self, RealField};
 use slab::Slab;
-use std::collections::{hash_map::Entry, HashMap};
 
 /// The technique used for contact tracking.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]

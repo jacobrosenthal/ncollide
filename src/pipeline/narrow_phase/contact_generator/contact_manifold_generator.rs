@@ -2,8 +2,8 @@ use crate::math::Isometry;
 use crate::query::ContactPreprocessor;
 use crate::query::{ContactManifold, ContactPrediction};
 use crate::shape::Shape;
+use core::any::Any;
 use na::RealField;
-use std::any::Any;
 
 /// An algorithm to compute contact points, normals and penetration depths between two specific
 /// objects.

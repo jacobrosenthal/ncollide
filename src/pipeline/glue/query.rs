@@ -1,5 +1,5 @@
+use core::vec::IntoIter;
 use na::RealField;
-use std::vec::IntoIter;
 
 use crate::bounding_volume::AABB;
 use crate::math::Point;

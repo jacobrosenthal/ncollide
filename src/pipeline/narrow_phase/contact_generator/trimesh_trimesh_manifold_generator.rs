@@ -8,8 +8,8 @@ use crate::shape::{
     ClippingCache, CompositeShape, ConvexPolygonalFeature, FeatureId, Segment,
     SegmentPointLocation, Shape, TriMesh, Triangle,
 };
+use core::mem;
 use na::{self, RealField, Unit};
-use std::mem;
 
 /// Collision detector between a concave shape and another shape.
 pub struct TriMeshTriMeshManifoldGenerator<N: RealField> {

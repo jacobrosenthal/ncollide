@@ -1,5 +1,5 @@
+use core::iter;
 use na::{DVector, Point2, RealField};
-use std::iter;
 
 use crate::bounding_volume::AABB;
 use crate::math::Vector;

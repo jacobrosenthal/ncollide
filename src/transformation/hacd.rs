@@ -10,11 +10,11 @@ use crate::query::{
 use crate::shape::SupportMap;
 use crate::transformation;
 use crate::utils;
+use core::cmp::Ordering;
+use core::collections::hash_map::Entry;
+use core::collections::{BinaryHeap, HashMap, HashSet};
+use core::mem;
 use na::{self, Id, Point3, RealField, Translation3, Vector2, Vector3};
-use std::cmp::Ordering;
-use std::collections::hash_map::Entry;
-use std::collections::{BinaryHeap, HashMap, HashSet};
-use std::mem;
 
 /// Approximate convex decomposition of a triangle mesh.
 pub fn hacd<N: RealField>(

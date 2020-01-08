@@ -4,16 +4,16 @@ use crate::math::{Point, Vector};
 #[cfg(feature = "dim3")]
 use crate::utils::{DeterministicState, HashablePartialEq};
 #[cfg(feature = "dim3")]
+use core::collections::hash_map::Entry;
+#[cfg(feature = "dim3")]
+use core::collections::HashMap;
+#[cfg(feature = "dim3")]
+use core::iter;
+#[cfg(feature = "dim3")]
 use na;
 use na::RealField;
 #[cfg(feature = "dim3")]
 use num::Zero;
-#[cfg(feature = "dim3")]
-use std::collections::hash_map::Entry;
-#[cfg(feature = "dim3")]
-use std::collections::HashMap;
-#[cfg(feature = "dim3")]
-use std::iter;
 
 // FIXME: remove that in favor of `push_xy_circle` ?
 /// Pushes a discretized counterclockwise circle to a buffer.

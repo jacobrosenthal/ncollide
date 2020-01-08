@@ -1,8 +1,8 @@
 //! Structures for describing and storing collision-related events.
 
 use crate::query::Proximity;
-use std::iter::IntoIterator;
-use std::slice::Iter;
+use core::iter::IntoIterator;
+use core::slice::Iter;
 
 // FIXME: we want a structure where we can add elements, iterate on them, but not remove them
 // without clearing the whole structure.

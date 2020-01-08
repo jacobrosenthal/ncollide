@@ -6,8 +6,8 @@ use crate::query::{
 };
 use crate::shape::{Ball, FeatureId, Shape};
 use crate::utils::IsometryOps;
+use core::marker::PhantomData;
 use na::{RealField, Unit};
-use std::marker::PhantomData;
 
 /// Collision detector between two balls.
 #[derive(Clone)]

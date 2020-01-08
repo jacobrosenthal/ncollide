@@ -431,7 +431,7 @@ impl<'a, N: RealField, Handle: CollisionObjectHandle> Iterator
             let endpoints = self.graph.0.edge_endpoints(edge).unwrap();
             let (co1, co2) = (self.graph.0[endpoints.0], self.graph.0[endpoints.1]);
             let interaction = self.graph.0.edge_weight_mut(edge)?;
-            return Some((co1, co2, edge, unsafe { std::mem::transmute(interaction) }));
+            return Some((co1, co2, edge, unsafe { core::mem::transmute(interaction) }));
         }
 
         let edge = self.outgoing_edge?;
@@ -439,6 +439,6 @@ impl<'a, N: RealField, Handle: CollisionObjectHandle> Iterator
         let endpoints = self.graph.0.edge_endpoints(edge).unwrap();
         let (co1, co2) = (self.graph.0[endpoints.0], self.graph.0[endpoints.1]);
         let interaction = self.graph.0.edge_weight_mut(edge)?;
-        Some((co1, co2, edge, unsafe { std::mem::transmute(interaction) }))
+        Some((co1, co2, edge, unsafe { core::mem::transmute(interaction) }))
     }
 }

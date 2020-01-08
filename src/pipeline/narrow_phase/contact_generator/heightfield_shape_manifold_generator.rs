@@ -4,8 +4,8 @@ use crate::pipeline::{ContactAlgorithm, ContactDispatcher, ContactManifoldGenera
 use crate::query::{ContactManifold, ContactPrediction, ContactPreprocessor};
 use crate::shape::{HeightField, Shape};
 use crate::utils::DeterministicState;
+use core::collections::{hash_map::Entry, HashMap};
 use na::{self, RealField};
-use std::collections::{hash_map::Entry, HashMap};
 
 /// Collision detector between an heightfield and another shape.
 pub struct HeightFieldShapeManifoldGenerator<N: RealField> {

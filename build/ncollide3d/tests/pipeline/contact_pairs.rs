@@ -1,9 +1,9 @@
+use core::collections::HashMap;
 use nalgebra::{zero, Isometry3, Translation, Vector3};
 use ncollide3d::{
     pipeline::{CollisionGroups, CollisionWorld, GeometricQueryType},
     shape::{Cuboid, ShapeHandle},
 };
-use std::collections::HashMap;
 
 #[test]
 fn two_colliding_cuboids() {

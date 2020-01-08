@@ -1,5 +1,5 @@
+use core::any::Any;
 use na::RealField;
-use std::any::Any;
 
 /// A signal handler for contact detection.
 pub trait BroadPhasePairFilter<N: RealField, Object, Handle>: Any + Send + Sync {

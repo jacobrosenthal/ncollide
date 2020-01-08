@@ -1,7 +1,7 @@
 use crate::bounding_volume::BoundingVolume;
 use crate::partitioning::{VisitStatus, Visitor};
+use core::marker::PhantomData;
 use na::RealField;
-use std::marker::PhantomData;
 
 /// Spatial partitioning data structure visitor collecting interferences with a given bounding volume.
 pub struct BoundingVolumeInterferencesCollector<'a, N: 'a, T: 'a, BV: 'a> {

@@ -25,7 +25,7 @@ fn ball_cuboid_toi() {
         &cuboid_pos,
         &box_vel1,
         &cuboid,
-        std::f64::MAX,
+        core::f64::MAX,
         0.0,
     )
     .map(|toi| toi.toi);
@@ -36,7 +36,7 @@ fn ball_cuboid_toi() {
         &cuboid_pos,
         &box_vel2,
         &cuboid,
-        std::f64::MAX,
+        core::f64::MAX,
         0.0,
     )
     .map(|toi| toi.toi);
@@ -47,7 +47,7 @@ fn ball_cuboid_toi() {
         &cuboid_pos,
         &box_vel1,
         &cuboid,
-        std::f64::MAX,
+        core::f64::MAX,
         0.0,
     )
     .map(|toi| toi.toi);

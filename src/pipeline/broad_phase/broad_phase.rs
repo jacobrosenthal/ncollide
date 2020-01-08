@@ -1,5 +1,5 @@
+use core::any::Any;
 use na::RealField;
-use std::any::Any;
 
 use crate::math::Point;
 use crate::query::Ray;

@@ -4,8 +4,8 @@ use crate::pipeline::narrow_phase::{ProximityAlgorithm, ProximityDetector, Proxi
 use crate::query::{visitors::BoundingVolumeInterferencesCollector, Proximity};
 use crate::shape::{CompositeShape, Shape};
 use crate::utils::DeterministicState;
+use core::collections::{hash_map::Entry, HashMap};
 use na::{self, RealField};
-use std::collections::{hash_map::Entry, HashMap};
 
 /// Proximity detector between a concave shape and another shape.
 pub struct CompositeShapeShapeProximityDetector<N> {

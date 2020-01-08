@@ -1,4 +1,4 @@
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 #[cfg(feature = "dim2")]
 use crate::procedural::Polyline;

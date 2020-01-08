@@ -5,9 +5,9 @@ use crate::shape::{ConvexPolygonalFeature, ConvexPolyhedron, FeatureId, SupportM
 #[cfg(feature = "dim2")]
 use crate::utils;
 use crate::utils::IsometryOps;
+use core::f64;
+use core::mem;
 use na::{self, RealField, Unit};
-use std::f64;
-use std::mem;
 
 /// A segment shape.
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]

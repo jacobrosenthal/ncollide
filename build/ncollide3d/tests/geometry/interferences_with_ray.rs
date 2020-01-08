@@ -1,4 +1,4 @@
-use std::f32;
+use core::f32;
 
 use na::{Isometry3, Point3, Translation3, UnitQuaternion, Vector3};
 use ncollide3d::{

@@ -8,8 +8,8 @@ use crate::query::{
 };
 use crate::shape::{CompositeShape, Shape};
 use crate::utils::DeterministicState;
+use core::collections::{hash_map::Entry, HashMap};
 use na::RealField;
-use std::collections::{hash_map::Entry, HashMap};
 
 /// Collision detector between a concave shape and another shape.
 pub struct CompositeShapeCompositeShapeManifoldGenerator<N> {
