@@ -26,7 +26,7 @@ pub use self::ball::Ball;
 // pub use self::heightfield2::HeightField;
 // #[cfg(feature = "dim3")]
 // pub use self::heightfield3::{HeightField, HeightFieldCellStatus};
-// pub use self::plane::Plane;
+pub use self::plane::Plane;
 // pub use self::polyline::Polyline;
 // pub use self::segment::{Segment, SegmentPointLocation};
 // #[doc(inline)]
@@ -63,7 +63,7 @@ mod ball;
 // mod heightfield2;
 // #[cfg(feature = "dim3")]
 // mod heightfield3;
-// mod plane;
+mod plane;
 // mod polyline;
 // mod segment;
 // #[doc(hidden)]
